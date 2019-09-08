@@ -1,0 +1,2 @@
+this is what we know abt the avacado ${textIn}.
+Created on ${Date.now()}
