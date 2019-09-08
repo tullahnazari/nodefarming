@@ -1,6 +1,7 @@
 //filesystem module to get access to those functions
 const fs = require('fs');
 const http = require('http');
+const url = require('url');
 
 
 /////////////////////////////////////////////////////////
@@ -40,9 +41,21 @@ const http = require('http');
 
 
 const server = http.createServer((req, res) => {
-  res.end('yello from the server! bruh')
+
+  const pathName = req.url;
+
+  if (pathName === '/' || pathName === '/overview') {
+    res.end('This is the OVERVIEW');
+  } else if (pathName === '/product') {
+    res.end('This is the PRODUCT');
+  } else
+    res.writeHead(404, {
+      'content-type': 'text/html',
+      'my0own-header': 'hello-world'
+    });
+  res.end('<h1>Page Not Found</h1>');
 });
 
 server.listen(8000, 'localhost', () => {
-console.log('Do you hear me callin?')
+  console.log('Do you hear me callin?');
 });
